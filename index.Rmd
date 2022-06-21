@@ -15,13 +15,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Tarea 2.
+# Tarea 2.
 
-##Instalación de paquetes
+## Instalación de paquetes
 
 install.packages('ggthemes')
 
-##Carga de paquetes
+## Carga de paquetes
 
 ```{r Carga de paquetes necesarios, message=FALSE}
 library(plotly)
@@ -41,9 +41,9 @@ Estadisticas_Policiales_OIJ$Fecha <-
   as.Date(Estadisticas_Policiales_OIJ$Fecha, format = "%Y-%m-%d")
 ```
 
-#Desarrollo
+# Desarrollo
 
-##Tabla DT
+## Tabla DT
 
 ```{r Tabla DT, message=FALSE}
 Estadisticas_Policiales_OIJ %>%
