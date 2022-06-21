@@ -9,4 +9,56 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Tarea 2.
+
+##Instalación de paquetes
+
+install.packages('ggthemes')
+
+##Carga de paquetes
+
+```{r Carga de paquetes necesarios, message=FALSE}
+library(plotly)
+library(DT)
+library(ggplot2)
+library(dplyr)
+library(readxl)
+library(ggthemes)
+library(tidyverse)
+```
+
+```{r Carga datos, message=FALSE}
+Estadisticas_Policiales_OIJ <-
+  readxl::read_excel("C:/Users/B87265/Tarea 2/Analisis de estadisticas policiales 2021/estadisticaspoliciales2021.xls")
+
+Estadisticas_Policiales_OIJ$Fecha <-
+  as.Date(Estadisticas_Policiales_OIJ$Fecha, format = "%Y-%m-%d")
+```
+
+#Desarrollo
+
+##Tabla DT
+
+```{r Tabla DT, message=FALSE}
+Estadisticas_Policiales_OIJ %>%
+  dplyr::select(Delito, Fecha, Victima, Edad, Genero, Provincia, Canton) %>%
+  mutate(Fecha = as.Date(Fecha, format = "%d/%m/%Y")) %>%
+  datatable(
+    options = list(
+      pageLenght = 15,
+      language = list(url = 
+'//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')),
+    colnames = c(
+      #Nombres de columnas
+      "Delito",
+      "Fecha",
+      "Víctima",
+      "Edad",
+      "Género",
+      "Provincia",
+      "Cantón"
+    )
+  )
+
+```
 
