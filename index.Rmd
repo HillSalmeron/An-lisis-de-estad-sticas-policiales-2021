@@ -4,11 +4,13 @@ author: "Hilary Salmerón"
 date: '2022-06-21'
 output: 
   html_document:
+    code_folding: hide
     theme: readable
     toc: true
     toc_depth: 5
-    collapsed: false
-    smooth_scoll: false
+    toc_floath:
+      collapsed: false
+      smooth_scoll: false
 ---
 
 ```{r setup, include=FALSE}
