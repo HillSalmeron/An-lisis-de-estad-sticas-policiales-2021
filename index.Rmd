@@ -19,9 +19,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Tarea 2.
 
-## Instalación de paquetes
-
-install.packages('ggthemes')
 
 ## Carga de paquetes
 
@@ -37,7 +34,7 @@ library(tidyverse)
 
 ```{r Carga datos, message=FALSE}
 Estadisticas_Policiales_OIJ <-
-  readxl::read_excel("C:/Users/B87265/Tarea 2/Analisis de estadisticas policiales 2021/estadisticaspoliciales2021.xls")
+  readxl::read_excel("C:/Users/Usuario/Desktop/UCR/I ciclo 2022/Procesamiento de datos geograficos/Tarea 2/Analisis de estadisticas policiales 2021/estadisticaspoliciales2021.xls")
 
 Estadisticas_Policiales_OIJ$Fecha <-
   as.Date(Estadisticas_Policiales_OIJ$Fecha, format = "%Y-%m-%d")
@@ -70,7 +67,7 @@ Estadisticas_Policiales_OIJ %>%
 
 ```
 
-## Gráfico de barras simples para cantidad de delitos por tipo de delito
+## Gráfico de barras simples para la cantidad por tipo de delito
 
 ```{r Grafico cantidad delitos, message=FALSE}
 Cantidad_por_tipo_delito <-
