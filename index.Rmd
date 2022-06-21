@@ -1,0 +1,12 @@
+---
+title: "Análisis de estadísticas policiales 2021"
+author: "Hilary Salmerón"
+date: '2022-06-21'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
