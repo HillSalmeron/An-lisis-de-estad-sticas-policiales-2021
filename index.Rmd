@@ -45,7 +45,7 @@ Estadisticas_Policiales_OIJ$Fecha <-
 
 # Desarrollo
 
-## Tabla DT
+## Tabla interactiva DT
 
 ```{r Tabla DT, message=FALSE}
 Estadisticas_Policiales_OIJ %>%
@@ -68,5 +68,24 @@ Estadisticas_Policiales_OIJ %>%
     )
   )
 
+```
+
+## Gráfico de barras simples para cantidad de delitos por tipo de delito
+
+```{r Grafico cantidad delitos, message=FALSE}
+Cantidad_por_tipo_delito <-
+  Estadisticas_Policiales_OIJ %>%
+  count(Delito) %>%
+  ggplot(aes(x = reorder(Delito, n), y = n)) +
+  geom_bar(stat = "identity") +
+  ggtitle("Cantidad de delitos por tipo") +
+  xlab("Tipo de delito") +
+  ylab("Cantidad") +
+  coord_flip() +
+  theme_hc()
+
+Cantidad_por_tipo_delito %>%
+  ggplotly() %>%
+  config(locale = "es")
 ```
 
