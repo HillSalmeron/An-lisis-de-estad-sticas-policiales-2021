@@ -19,8 +19,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Tarea 2.
 
+install.packages("dplyr")
+install.packages('tidyverse')
 
-## Carga de paquetes
+## Carga de paquetes.
 
 ```{r Carga de paquetes necesarios, message=FALSE}
 library(plotly)
@@ -33,7 +35,7 @@ library(tidyverse)
 ```
 
 ```{r Carga datos, message=FALSE}
-Estadisticas_Policiales_OIJ <-
+Estadisticas_Policiales_OIJ <- 
   readxl::read_excel("C:/Users/Usuario/Desktop/UCR/I ciclo 2022/Procesamiento de datos geograficos/Tarea 2/Analisis de estadisticas policiales 2021/estadisticaspoliciales2021.xls")
 
 Estadisticas_Policiales_OIJ$Fecha <-
@@ -42,7 +44,7 @@ Estadisticas_Policiales_OIJ$Fecha <-
 
 # Desarrollo
 
-## Tabla interactiva DT
+## Tabla interactiva DT.
 
 ```{r Tabla DT, message=FALSE}
 Estadisticas_Policiales_OIJ %>%
@@ -67,7 +69,7 @@ Estadisticas_Policiales_OIJ %>%
 
 ```
 
-## Gráfico de barras simples para la cantidad por tipo de delito
+## Gráfico de barras simples para cantidad por tipo de delito.
 
 ```{r Grafico cantidad delitos, message=FALSE}
 Cantidad_por_tipo_delito <-
@@ -86,3 +88,38 @@ Cantidad_por_tipo_delito %>%
   config(locale = "es")
 ```
 
+
+### Gráfico de barras apiladas por cada tipo de delito y su proporción.
+
+```{r Gráfico tipo delito y proporción, message=FALSE}
+Grafico_4 <-
+  Estadisticas_Policiales_OIJ %>%
+  ggplot(aes(x = Genero, fill = Delito)) +
+  geom_bar(position = "fill") +
+  ggtitle("Gráfico tipo delito y proporción") +
+  xlab("Género") +
+  ylab("Proporción") +
+  labs(fill = "Delito") +
+  theme_minimal()
+
+ggplotly(Grafico_4) %>% config(locale = 'es')
+```
+
+
+### Gráfico de barras simples para cantidad de delitos en los cantones: San José, Alajuela, Cartago y Heredia.
+
+```{r Gráfico cantidad delitos en cantones, message=FALSE}
+
+Grafico_5 <- filter(Estadisticas_Policiales_OIJ, grepl('HEREDIA|ALAJUELA|CARTAGO|SAN JOSE', Provincia))
+
+Delitos_cantones_SanJose_Alajuela_Cartago_Heredia <-
+  ggplot(data= Grafico_5, aes(x=Provincia)) +
+  geom_bar( ) +
+  ggtitle("Delitos según cantones: San Jose Alajuela Cartago Heredia") +
+  xlab("Provincias") +
+  ylab("Cantidad de Delitos") +
+  theme_minimal()
+
+ggplotly(Delitos_cantones_SanJose_Alajuela_Cartago_Heredia) %>% config(locale = 'es')
+
+```
